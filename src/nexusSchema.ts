@@ -1,17 +1,17 @@
+import path from 'path'
 import { makeSchema } from 'nexus'
-import * as types from './graphql'
 import { paljs } from '@paljs/nexus'
-import { join } from 'path'
+import * as types from './graphql'
 
 export const schema = makeSchema({
   types,
   plugins: [paljs()],
   outputs: {
-    schema: __dirname + '/generated/schema.graphql',
-    typegen: __dirname + '/generated/nexus.ts',
+    schema: path.join(__dirname + '/generated/schema.graphql'),
+    typegen: path.join(__dirname + '/generated/nexus.ts'),
   },
   contextType: {
-    module: join(__dirname, 'context.ts'),
+    module: path.join(__dirname, 'context.ts'),
     export: 'Context',
   },
 })
